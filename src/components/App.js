@@ -1,20 +1,22 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { BrowserRouter as Router,Link,Route,Routes } from 'react-router-dom';
-import PostsList from './PostsList';
+import Home from './Home';
 import { fetchPosts } from '../actions/posts';
 import PropTypes from 'prop-types';
 import Navbar from './Navbar';
+import Page404 from './Page404';
+import Login from './Login';
 
-const login=()=>{
-  <div>Login</div>
-}
-const signup=()=>{
-  <div>signup</div>
-}
-const home=()=>{
-  <div>home</div>
-}
+// const login=()=>{
+//   <div>Login</div>
+// }
+// const signup=()=>{
+//   <div>signup</div>
+// }
+// const home=()=>{
+//   <div>home</div>
+// }
 
 class App extends React.Component {
   componentDidMount() {
@@ -30,7 +32,7 @@ class App extends React.Component {
       <div>
         <Navbar />
        {/* <PostsList posts={posts} /> */}
-       <ul>
+       {/* <ul>
          <li>
            <Link to="/">Home</Link>
 
@@ -43,11 +45,18 @@ class App extends React.Component {
            <Link to="/signup">Signup</Link>
            
          </li>
-       </ul>
+       </ul> */}
       <Routes>
-       <Route exact path="/" element={<PostsList posts={posts}/>}/>
-      {/* //  <Route path="/login" element={login()}/>
-      //  <Route path="/signup" element={signup()}/> */}
+       <Route exact path="/" element={<Home posts={posts}/>}/>
+        <Route  path="/login" element={<Login />}/>
+       {/* <Route path="/signup" element={signup()}/>  */}
+     <Route
+      path="*"
+      element={
+        <Page404 />
+      }
+    />
+  
        </Routes>
     </div>
     </Router>
