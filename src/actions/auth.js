@@ -1,0 +1,24 @@
+import { APIUrls } from "../helpers/url";
+import { LOGIN_START } from "./actionTypes";
+import { getformBody } from "../helpers/utils";
+
+export function startLogin(){
+    return {
+        type: LOGIN_START
+    }
+}
+
+
+
+export function login(email,password){
+    return (dispatch)=>{
+        const url=APIUrls.login();
+        fetch(url,{
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-from-urlencoded'
+            },
+            body: getformBody({email,password})
+        });
+    }
+}
