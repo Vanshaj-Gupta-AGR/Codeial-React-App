@@ -12,6 +12,7 @@ import Navbar from './Navbar';
 import Page404 from './Page404';
 import Login from './Login';
 import Signup from './Signup';
+import Settings from './Settings';
 
 
 // const login=()=>{
@@ -86,7 +87,7 @@ class App extends React.Component {
           path="/settings"
           element={
             <PrivateRoute>
-              <Signup isLoggedin={this.props.auth.isLoggedin} />
+              <Settings isLoggedin={this.props.auth.isLoggedin} />
             </PrivateRoute>
           }
         />

@@ -8,6 +8,9 @@ export const APIUrls={
     fetchPosts:()=>{
 
     return 'https://aqueous-cliffs-63191.herokuapp.com/api/v1/posts'
+    },
+    editProfile: ()=>{
+        return 'http://codeial.codingninjas.com:8000/api/v2/users/edit'
     }
 
     }
