@@ -12,6 +12,7 @@ class Signup extends Component {
       confirmPassword: '',
     };
   }
+  
 
   handleInputChange = (field, value) => {
     this.setState({
@@ -29,6 +30,9 @@ class Signup extends Component {
       this.props.dispatch(signup(email, password, confirmPassword, name));
     }
   };
+  
+  
+  
 
   render() {
     const { inProgress, error } = this.props.auth;

@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Routes, Route, Navigate } from "react-router-dom";
 import {login} from '../actions/auth'
+import PostsList from './PostsList';
+
+
 
 class Login extends Component {
     constructor(props){
@@ -13,6 +17,9 @@ class Login extends Component {
             password:''
         }
     }
+    
+    
+    
     handleFormSubmit=(e)=>{
         e.preventDefault();
         console.log(this.state.email,this.state.password);
@@ -34,7 +41,11 @@ class Login extends Component {
         })
     }
     render() {
-        const {error,inProgress}=this.props.auth;
+        const {error,inProgress,isLoggedin}=this.props.auth;
+
+        if(isLoggedin){
+           return <Navigate to="/"></Navigate>
+        }
         return (
            <form className='login-form'>
                <span className='login-signup-header'>Log in</span>
@@ -56,7 +67,8 @@ class Login extends Component {
 
 function mapStateToprops(state){
     return {
-        auth: state.auth
+        auth: state.auth,
+        posts: state.posts
     }
 }
 

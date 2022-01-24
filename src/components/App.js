@@ -1,4 +1,5 @@
 import React from 'react';
+import { Navigate } from 'react-router-dom';
 import jwt_decode from 'jwt-decode'
 import { connect } from 'react-redux';
 import { BrowserRouter as Router,Link,Route,Routes } from 'react-router-dom';
@@ -23,31 +24,38 @@ import Signup from './Signup';
 //   <div>home</div>
 // }
 
+var y;
+function PrivateRoute({ children}) {
+  const auth=y
+  return auth ? children : <Navigate to="/login" />;
+}
 class App extends React.Component {
   componentDidMount() {
     this.props.dispatch(fetchPosts());
 
     const token = localStorage.getItem('token');
+    if(token)
     console.log(jwt_decode(token))
 
-    // if (token) {
-    //   const user = jwtDecode(token);
+    if (token) {
+      const user = jwt_decode(token);
 
-    //   console.log('user', user);
-    //   this.props.dispatch(
-    //     authenticateUser({
-    //       email: user.email,
-    //       _id: user._id,
-    //       name: user.name,
-    //     })
-    //   );
-    // }
+      console.log('user', user);
+      this.props.dispatch(
+        authenticateUser({
+          email: user.email,
+          _id: user._id,
+          name: user.name,
+        })
+      );
+    }
   }
 
   
 
   render() {
-    const {posts}=this.props;
+    const {posts,auth}=this.props;
+    y=auth.isLoggedin
 
     console.log('PROPS', this.props.posts);
     return (
@@ -74,6 +82,14 @@ class App extends React.Component {
         <Route  path="/login" element={<Login />}/>
         
        <Route path="/register" element={<Signup />}/> 
+       <Route
+          path="/settings"
+          element={
+            <PrivateRoute>
+              <Signup isLoggedin={this.props.auth.isLoggedin} />
+            </PrivateRoute>
+          }
+        />
      <Route
       path="*"
       element={
@@ -91,6 +107,7 @@ class App extends React.Component {
 function mapStateToProps(state) {
   return {
     posts: state.posts,
+    auth: state.auth
   };
 }
 App.propTypes = {
