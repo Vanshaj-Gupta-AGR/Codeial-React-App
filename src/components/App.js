@@ -1,4 +1,5 @@
 import React from 'react';
+import { useParams } from 'react-router-dom';
 import { Navigate } from 'react-router-dom';
 import jwt_decode from 'jwt-decode'
 import { connect } from 'react-redux';
@@ -13,6 +14,8 @@ import Page404 from './Page404';
 import Login from './Login';
 import Signup from './Signup';
 import Settings from './Settings';
+import UserProfile from './UserProfile';
+import { fetchUserFriends } from '../actions/friends';
 
 
 // const login=()=>{
@@ -49,13 +52,15 @@ class App extends React.Component {
           name: user.name,
         })
       );
+      this.props.dispatch(fetchUserFriends());
     }
+   
   }
 
   
 
   render() {
-    const {posts,auth}=this.props;
+    const {posts,auth,friends}=this.props;
     y=auth.isLoggedin
 
     console.log('PROPS', this.props.posts);
@@ -79,7 +84,7 @@ class App extends React.Component {
          </li>
        </ul> */}
       <Routes>
-       <Route exact path="/" element={<Home posts={posts}/>}/>
+       <Route exact path="/" element={<Home posts={posts} friends={friends} isLoggedin={auth.isLoggedin}/>}/>
         <Route  path="/login" element={<Login />}/>
         
        <Route path="/register" element={<Signup />}/> 
@@ -91,6 +96,7 @@ class App extends React.Component {
             </PrivateRoute>
           }
         />
+         <Route path="/user/:userId" element={<UserProfile />}/> 
      <Route
       path="*"
       element={
@@ -108,7 +114,8 @@ class App extends React.Component {
 function mapStateToProps(state) {
   return {
     posts: state.posts,
-    auth: state.auth
+    auth: state.auth,
+    friends: state.friends
   };
 }
 App.propTypes = {
