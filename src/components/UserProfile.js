@@ -3,8 +3,12 @@ import { useParams } from 'react-router-dom';
 import { useEffect } from 'react';
 import { fetchUserProfile } from '../actions/profile';
 import { connect } from 'react-redux';
+import { useCallback } from 'react';
 import profile from '../reducers/profile';
-
+import { APIUrls } from '../helpers/url';
+import { gettoken } from '../helpers/utils';
+import {addFriend} from '../actions/friends';
+import {removeFriend} from '../actions/friends'
 
 
 function UserProfile(props) {
@@ -15,14 +19,61 @@ function UserProfile(props) {
     }
 
     },["hello"])
+    const handleAddFreind=useCallback(async ()=>{
+            const url=APIUrls.addFriend(id);
+            const options={
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+                'Authorization':  `Bearer ${gettoken()}`
+              },
+            };
+            const response=await fetch(url,options);
+            const data=await response.json();
+            if(data.success){
+              console.log("data",data);
+              props.dispatch(addFriend(data.data.friendship));
+              return ;
+            };
+
+         
+            
+    },[props.friends])
+    const handleRemoveFriend=useCallback(async ()=>{
+      const url=APIUrls.removeFriend(id);
+      const options={
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+          'Authorization':  `Bearer ${gettoken()}`
+        },
+      };
+      const response=await fetch(url,options);
+      const data=await response.json();
+      if(data.success){
+        console.log("data",data);
+        props.dispatch(removeFriend(id));
+        return ;
+      };
+
+   
+      
+},[props.friends])
+
+const change=useCallback(()=>{
+  console.log("friends",props.friends)
+  return props.friends.map((friend)=>friend.to_user._id).indexOf(id)===-1 ? false : true
+})
 
   const user=props.profile.user
-    console.log(props.profile.inProgress)
+    console.log("inprogress",props.profile.inProgress)
     if(props.profile.inProgress){
       return <h1>Loading</h1>
     }
 
-  const isUserFriend=props.friends.map((friend)=>friend.to_user._id).indexOf(id)===-1 ? false : true
+   console.log("again friends",props.friends);
+
+  const isUserFriend=change()
  
   return (
     <div>
@@ -45,7 +96,7 @@ function UserProfile(props) {
         </div>
 
         <div className="btn-grp">
-          {!isUserFriend ? <button className="button save-btn">Add Friend</button> : <button className="button save-btn">Remove Friend</button> }
+          {!isUserFriend ? <button className="button save-btn" onClick={handleAddFreind}>Add Friend</button> : <button className="button save-btn" onClick={handleRemoveFriend}>Remove Friend</button> }
           
         </div>
       </div>
