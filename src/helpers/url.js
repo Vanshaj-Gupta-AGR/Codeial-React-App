@@ -23,6 +23,16 @@ export const APIUrls={
     },
     removeFriend: (userId)=>{
         return `http://codeial.codingninjas.com:8000/api/v2/friendship/remove_friendship?user_id=${userId}`
+    },
+    createPost: ()=>{
+       return 'http://codeial.codingninjas.com:8000/api/v2/posts/create'
+    },
+    createComment: () => {
+        return   'http://codeial.codingninjas.com:8000/api/v2/comments/'
+    },
+    toggleLike: (id,likeType)=>{
+        return `http://codeial.codingninjas.com:8000/api/v2/likes/toggle?likeable_id=${id}&likeable_type=${likeType}`
     }
+
 
     }
