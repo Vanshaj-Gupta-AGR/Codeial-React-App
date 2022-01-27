@@ -15,6 +15,8 @@ class CreatePost extends Component {
 
     this.setState({
         content: ''
+
+        //hello
     })
   };
 
