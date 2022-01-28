@@ -18,7 +18,7 @@ function UserProfile(props) {
       props.dispatch(fetchUserProfile(id))
     }
 
-    },["hello"])
+    },[id])
     const handleAddFreind=useCallback(async ()=>{
             const url=APIUrls.addFriend(id);
             const options={

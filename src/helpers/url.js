@@ -32,6 +32,9 @@ export const APIUrls={
     },
     toggleLike: (id,likeType)=>{
         return `http://codeial.codingninjas.com:8000/api/v2/likes/toggle?likeable_id=${id}&likeable_type=${likeType}`
+    },
+    userSearch: (searchText) =>{
+        return   `http://codeial.codingninjas.com:8000/api/v2/users/search?text=${searchText}`
     }
 
 
