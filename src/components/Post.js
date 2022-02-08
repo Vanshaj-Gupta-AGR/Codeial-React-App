@@ -78,7 +78,7 @@ class Post extends Component {
 
             <div className="post-comments-icon">
               <img
-                src="http://cdn-icons.flaticon.com/png/512/1947/premium/1947247.png?token=exp=1643315183~hmac=bfefab863dda94f9fad603d88ad363e0"
+                src="http://cdn-icons.flaticon.com/png/512/3114/premium/3114810.png?token=exp=1644354153~hmac=9ac0461d430d92a37beb49712ee7dfb5"
                 alt="comments-icon"
               />
               <span>{post.comments.length}</span>
