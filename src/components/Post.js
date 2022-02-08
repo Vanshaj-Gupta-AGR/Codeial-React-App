@@ -51,10 +51,10 @@ class Post extends Component {
         <div className="post-header">
           <div className="post-avatar">
             <Link to={`/user/${post.user._id}`}>
-              <img
-                  src="http://cdn-icons.flaticon.com/png/512/1144/premium/1144709.png?token=exp=1642789708~hmac=9a5243186d82684597d45522743523f7"
-                  alt="user-pic"
-              />
+            <img
+           src="http://cdn-icons-png.flaticon.com/512/3135/3135715.png"
+           alt="user-dp"
+          />
             </Link>
             <div>
               <span className="post-author">{post.user.name}</span>
