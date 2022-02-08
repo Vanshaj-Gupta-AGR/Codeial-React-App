@@ -1,6 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router-dom'
-import {connect} from 'react-redux';
+import {connect} from 'react-redux'
 
 import {logoutUser} from '../actions/auth'
 import { searchUsers } from '../actions/search';
@@ -21,17 +21,13 @@ class Navbar extends React.Component {
         <div className="left-div">
           <Link to="/">
             <img
-              src="https://ninjasfiles.s3.amazonaws.com/0000000000003454.png"
+              src="http://ninjasfiles.s3.amazonaws.com/0000000000003454.png"
               alt="logo"
             />
           </Link>
         </div>
         <div className="search-container">
-          <img
-            className="search-icon"
-            src="https://cdn-icons.flaticon.com/png/512/2811/premium/2811790.png?token=exp=1642942955~hmac=c6bdb9db77bb155a5c7ed223c0c03cca"
-            alt="search-icon"
-          />
+        <i className="fa-solid fa-magnifying-glass"></i>
           <input placeholder="Search" onChange={this.handleSearch} />
           {results.length>0 && (
           <div className="search-results">
@@ -41,7 +37,7 @@ class Navbar extends React.Component {
               <li className="search-results-row" key={user._id}>
                 <Link to={`/user/${user._id}`}>
                 <img
-                  src="https://cdn-icons.flaticon.com/png/512/1144/premium/1144709.png?token=exp=1642789708~hmac=9a5243186d82684597d45522743523f7"
+                  src="http://cdn-icons.flaticon.com/png/512/1144/premium/1144709.png?token=exp=1642789708~hmac=9a5243186d82684597d45522743523f7"
                   alt="user-pic"
               />
                 <span>{user.name}</span>
@@ -57,7 +53,7 @@ class Navbar extends React.Component {
             <div className="user">
               <Link to='/settings'>
               <img
-                src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png"
+                src="http://cdn-icons-png.flaticon.com/512/3135/3135715.png"
                 alt="user-dp"
                 id="user-dp"
               />

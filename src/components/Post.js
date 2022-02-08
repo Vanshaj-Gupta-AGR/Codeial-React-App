@@ -52,7 +52,7 @@ class Post extends Component {
           <div className="post-avatar">
             <Link to={`/user/${post.user._id}`}>
               <img
-                  src="https://cdn-icons.flaticon.com/png/512/1144/premium/1144709.png?token=exp=1642789708~hmac=9a5243186d82684597d45522743523f7"
+                  src="http://cdn-icons.flaticon.com/png/512/1144/premium/1144709.png?token=exp=1642789708~hmac=9a5243186d82684597d45522743523f7"
                   alt="user-pic"
               />
             </Link>
@@ -66,10 +66,10 @@ class Post extends Component {
           <div className="post-actions">
             <button className="post-like no-btn" onClick={this.handlePostLike}>
                 {ispostLiked ?  <img
-                src='https://cdn-icons-png.flaticon.com/512/833/833472.png'
+                src='http://cdn-icons-png.flaticon.com/512/833/833472.png'
                 alt="likes-icon"
               /> :  <img
-              src="https://cdn-icons-png.flaticon.com/512/1077/1077035.png"
+              src="http://cdn-icons-png.flaticon.com/512/1077/1077035.png"
               alt="likes-icon"
             /> }
              
@@ -78,7 +78,7 @@ class Post extends Component {
 
             <div className="post-comments-icon">
               <img
-                src="https://cdn-icons.flaticon.com/png/512/1947/premium/1947247.png?token=exp=1643315183~hmac=bfefab863dda94f9fad603d88ad363e0"
+                src="http://cdn-icons.flaticon.com/png/512/1947/premium/1947247.png?token=exp=1643315183~hmac=bfefab863dda94f9fad603d88ad363e0"
                 alt="comments-icon"
               />
               <span>{post.comments.length}</span>
