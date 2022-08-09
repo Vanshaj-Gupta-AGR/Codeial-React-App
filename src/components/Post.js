@@ -18,6 +18,8 @@ class Post extends Component {
     const { comment } = this.state;
     const { post } = this.props;
 
+   
+
     if (e.key === 'Enter') {
       this.props.dispatch(createComment(comment, post._id));
 
